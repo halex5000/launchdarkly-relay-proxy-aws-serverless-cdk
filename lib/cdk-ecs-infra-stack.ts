@@ -84,6 +84,10 @@ export class CdkEcsInfraStack extends cdk.Stack {
       }
     );
 
+    service.targetGroup.configureHealthCheck({
+      path: '/status',
+    })
+
     flagsTable.grantReadWriteData(service.service.taskDefinition.taskRole);
   }
 }
